@@ -67,6 +67,35 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 </ol>
 
+## Program:
+```
+from collections import defaultdict
+from collections import deque
+def bfs(g,s,vi,p):
+    q=deque()
+    p.append(s)
+    q.append(s)
+    vi[s]=True
+    while len(q)!=0:
+        tn=q.popleft()
+        for ne in g[tn]:
+            if vi[ne]==False:
+                p.append(ne)
+                q.append(ne)
+                vi[ne]=True
+    return p
+g=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split())
+    g[u].append(v)
+    g[v].append(u)
+st=input()
+vi=defaultdict(bool)
+p=[]
+tdp=bfs(g,st,vi,p)
+print(tdp)
+```
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -101,6 +130,8 @@ G F <BR>
 <h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
+
+
 <hr>
 <h3>Result:</h3>
 <hr>
